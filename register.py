@@ -3,12 +3,62 @@ import tkinter.messagebox as MessageBox
 import mysql.connector as mysql
 import tkinter as tk
 from tkinter import ttk
+from validate_email_address import validate_email
+
 
 root = Tk()
 root.geometry('1920x1080')
 root.title('Liqour')
 root.configure(bg='#EEEBEB')
 root.state('zoomed')
+
+
+def create_account():
+    print("Inside create_account")
+
+    email_content = email_entry.get()
+    if validate_email(email_content, verify= True):
+        print("valid email")
+    else:
+        MessageBox.showerror("Error","Enter a valid email address")
+
+    first_name = first_name_entry.get()
+    second_name = second_name_entry.get()
+    email= email_entry.get()
+    role =role_menu.get()
+    password = password_entry.get()
+    confirm_password=confirm_password_entry.get()
+    
+    if not email or not password or not role:
+        MessageBox.showerror('ERROR', "Please fill all the gaps")
+        return
+    
+    try:
+        connection = mysql.connect(
+            host="localhost",
+            user="root",
+            password="MahotraAdhikari7@",
+            database ="project"
+        )
+        cursor= connection.cursor()
+
+        query = "INSERT INTO users(`first_name`, `second_name`, `email`, `role`, `password`, `confirm_password`) VALUES (%s,%s,%s,%s,%s,%s)"
+        data= (first_name,second_name,email, role, password,confirm_password)
+        cursor.execute(query,data)
+
+        connection.commit()
+        MessageBox.showinfo("Done", "Data added to the databse successfully")
+    except Exception as e:
+        MessageBox.showerror("Error",f"Error:{e}")
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+
+    
+             
 
 box = tk.Frame(root, width=500, height=600, bg='#FFFFFF')
 box.place(relx=0.5, rely=0.5, anchor='center')
@@ -30,6 +80,8 @@ email = Label(root, text='Email', font=('Montserrat', 12), fg='#413F3F', bg='#FF
 email.place(relx=0.355, y=230)
 email_entry = Entry(root, width=26, font=('Montserrat Light', 16), bg='#fdfdfd')
 email_entry.place(relx=0.49, y=270, anchor='center')
+ 
+
 
 role = Label(root, text='Role', font=('Montserrat', 12), fg='#413F3F', bg='#FFFFFF')
 role.place(relx=0.355, y=320)
@@ -70,7 +122,9 @@ confirm_password_entry.place(relx=0.49, y=540, anchor='center')
 hide_button2 = tk.Button(root, text='Hide', font=('Montserrat Light', 10), height=1, width= 4, command = confirm_password_visibility, bg='#FFFFFF')
 hide_button2.place(relx=0.593, y=525)
 
-login_button = Button(root, width=26, text='Create my account', font=('Montserrat', 12), fg='#FFFFFF', bg='black')
+login_button = Button(root, width=26, text='Create my account', command= create_account ,font=('Montserrat', 12), fg='#FFFFFF', bg='black')
 login_button.place(relx=0.49, y=610, anchor='center')
+
+
 
 root.mainloop()

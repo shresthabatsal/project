@@ -37,7 +37,7 @@ def create_account():
         connection = mysql.connect(
             host="localhost",
             user="root",
-            password="aayushd1",
+            password="",
             database ="project"
         )
         cursor= connection.cursor()

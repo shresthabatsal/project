@@ -12,15 +12,8 @@ root.title('Liqour')
 root.configure(bg='#EEEBEB')
 root.state('zoomed')
 
-
 def create_account():
     print("Inside create_account")
-
-    email_content = email_entry.get()
-    if validate_email(email_content, verify= True):
-        print("valid email")
-    else:
-        MessageBox.showerror("Error","Enter a valid email address")
 
     first_name = first_name_entry.get()
     second_name = second_name_entry.get()
@@ -28,18 +21,32 @@ def create_account():
     role =role_menu.get()
     password = password_entry.get()
     confirm_password=confirm_password_entry.get()
-    
-    if not email or not password or not role:
+   
+    if not email or not password or not role or not first_name or not second_name or not confirm_password:
         MessageBox.showerror('ERROR', "Please fill all the gaps")
         return
-    
+    else:
+        print("filled")
+
+    email_content = email_entry.get()
+    if not validate_email(email_content, verify=True):
+        MessageBox.showerror("Error","Enter a valid email address")
+        return
+    else:
+        print("valid_email")
+    entered_password= password_entry.get()
+    if entered_password != confirm_password_entry.get():
+         MessageBox.showerror("Error", "The password you entered doesn't match.")
+         return
+    else:
+        print("matched")
     try:
         connection = mysql.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database ="project"
-        )
+                host="localhost",
+                    user="root",
+                    password="",
+                    database ="project"
+                    )
         cursor= connection.cursor()
 
         query = "INSERT INTO users(`first_name`, `second_name`, `email`, `role`, `password`, `confirm_password`) VALUES (%s,%s,%s,%s,%s,%s)"
@@ -49,17 +56,14 @@ def create_account():
         connection.commit()
         MessageBox.showinfo("Done", "Data added to the databse successfully")
     except Exception as e:
-        MessageBox.showerror("Error",f"Error:{e}")
+                MessageBox.showerror("Error",f"Error:{e}")
 
     finally:
-        if connection.is_connected():
-            cursor.close()
-            connection.close()
+            if connection.is_connected():
+                cursor.close()
+                connection.close()
 
-
-    
-             
-
+        
 box = tk.Frame(root, width=500, height=600, bg='#FFFFFF')
 box.place(relx=0.5, rely=0.5, anchor='center')
 

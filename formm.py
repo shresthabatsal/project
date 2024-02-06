@@ -11,7 +11,7 @@ def submit():
   if(firstname=="" or lastname =="" or email =="" or password ==""):
         MessageBox.showinfo("Alert","insert values!!")
   else:
-        con= mysql.connect(host="localhost",user="root",password="aayushd1",database="form")
+        con= mysql.connect(host="localhost",user="root",password="",database="form")
         cursor=con.cursor()
         cursor.execute("insert into form values('"+ firstname +"','"+ lastname +"','" +email +"','"+ password +"')")
         cursor.execute("commit")

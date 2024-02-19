@@ -278,6 +278,10 @@ logo = tk.PhotoImage(file='kitapp_style.png')
 label = tk.Label(root, image=logo)
 label.place(relx=0.005, rely=0.85)
 
+advert = tk.PhotoImage(file='advert.png')
+label = tk.Label(frame1, image=advert)
+label.place(relx=0.025, rely=0.041)
+
 notebook.place(relx=0)
 
 root.mainloop()

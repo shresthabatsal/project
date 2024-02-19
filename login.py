@@ -17,6 +17,7 @@ root.resizable(False, False)
 def login():
     email = email_entry.get()
     password = password_entry.get()
+    role = role_menu.get()
 
     try:
         connection = mysql.connect(
@@ -36,8 +37,12 @@ def login():
             if password == stored_password:
                 MessageBox.showinfo("Success", "Login successful!")
                 root.destroy()
-                import user_dashboard
-                user_dashboard.open_register_window()
+                if role == 'User':
+                    import user_dashboard
+                    user_dashboard.open()
+                elif role == 'Admin':
+                    import admin_dashboard
+                    admin_dashboard.open()
             else:
                 MessageBox.showerror("Error", "Incorrect password!")
         else:

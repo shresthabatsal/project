@@ -73,6 +73,7 @@ Book5_image=PhotoImage(file="Earthsea.png")
 Book5_label=Label(display_top_rated_books,image=Book5_image)
 Book5_label.place(relx=0.84 ,rely=0.05 )
 
+#fcghj
 
 
 
@@ -243,6 +244,26 @@ Book5_label.bind("<Button-1>",  on_book5_click)
 frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightgreen")
 discover_icon = PhotoImage(file='discover_small.png')
 notebook.add(frame2, text="Discover", image=discover_icon, compound=tk.LEFT)
+
+search_frame=tk.Frame(frame2,width=1000,height=700,bg="#FFFFFF")
+search_frame.place(relx=0.425,rely=0.481,anchor="center")
+
+Search=Label(search_frame,text="SEARCH BOOKS",font=("Montserrat Black", "25"),bg="#FFFFFF")
+Search.place(relx=0.5,rely=0.08,anchor="center")
+
+Book_Id = Label(search_frame, text='Book ID', font=("Montserrat Light", "22"),bg="#FFFFFF")
+Book_Id.place(relx=0.12,rely=0.251,anchor="center")
+
+search_entry=tk.Entry(search_frame,width=50,bd=2,highlightbackground="black",font=('Montserrat Light',12))
+search_entry.place(relx=0.2,rely=0.235)
+
+def search_books():
+    user_input = search_entry.get()
+    print("Searching for:",user_input)
+
+    
+search_button=tk.Button(search_frame,text="Search",bg="#FFFFFF",command=search_books,width=12,height=1,font=("Montserrat SemiBold",9))
+search_button.place(relx=0.821,rely=0.253,anchor="center")
 
 
 frame3 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightcoral")

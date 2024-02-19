@@ -43,6 +43,202 @@ ad.place(relx=0.43, rely=0.25, anchor='center')
 top_rated = tk.Frame(frame1, width=1100, height=320, bg='#FFFFFF')
 top_rated.place(relx=0.43, rely=0.71, anchor='center')
 
+top_books=Label(top_rated,text="TOP RATED",font=('Montserrat Black', 25),bg="#FFFFFF")
+top_books.place(relx=0.01,rely=0.01)
+
+badge_image=PhotoImage(file="badge.png",)
+badge_label=Label(top_rated,image=badge_image,bg="#FFFFFF")
+badge_label.place(relx=0.21,rely=0.03)
+
+display_top_rated_books=tk.Frame(top_rated,width=1020,height=230, bg="#FFFFFF")
+display_top_rated_books.place(relx=0.49,rely=0.55,anchor='center')
+
+Book1_image=PhotoImage(file="The_Great_Gatsby.png")
+Book1_label=Label(display_top_rated_books,image=Book1_image,)
+Book1_label.place(relx=0.03,rely=0.05)
+
+Book2_image=PhotoImage(file="To_Kill_a_Mockingbird.png")
+Book2_label=Label(display_top_rated_books,image=Book2_image)
+Book2_label.place(relx=0.238 ,rely=0.05 )
+
+Book3_image=PhotoImage(file="Pride and prejudice.png")
+Book3_label=Label(display_top_rated_books,image=Book3_image)
+Book3_label.place(relx=0.46 ,rely=0.05 )
+
+Book4_image=PhotoImage(file="The alchemist.png")
+Book4_label=Label(display_top_rated_books,image=Book4_image)
+Book4_label.place(relx=0.65 ,rely=0.05 )
+
+Book5_image=PhotoImage(file="Earthsea.png")
+Book5_label=Label(display_top_rated_books,image=Book5_image)
+Book5_label.place(relx=0.84 ,rely=0.05 )
+
+
+
+
+def show_book_info(book_info_text,x,y):
+    global info_box
+    info_box=tk.Toplevel()
+    info_box.title("Book Information")
+    info_box.geometry(f"700x500+{x}+{y}")
+    info_box.resizable(False,False)
+
+    info_box.configure(bg="#FFFFFF")
+
+
+    info_label=tk.Label(info_box, text=book_info_text,justify=tk.LEFT,font=("Montserrat SemiBold",10),bg="#FFFFFF")
+    info_label.place(relx=0.1, rely=0.001, relwidth=0.8, relheight=0.6)
+
+    borrow_button = tk.Button(info_box, text="Borrow",fg='black',bg="#FFFFFF",font=("Monstserrat SemiBold",15),borderwidth=5)
+    borrow_button.place(relx=0.4, rely=0.8, relwidth=0.2, relheight=0.1)
+
+    
+
+
+    
+
+
+
+    def close_info_box():
+        info_box.destroy()
+        # Reset background color of all book labels
+        Book1_label.config(bg="#ADD8E6")
+        Book2_label.config(bg="#ADD8E6")
+        Book3_label.config(bg="#ADD8E6")
+        Book4_label.config(bg="#ADD8E6")
+        Book5_label.config(bg="#ADD8E6")
+
+    # Set the function to be called when the info_box window is closed
+    info_box.protocol("WM_DELETE_WINDOW", close_info_box)
+
+
+
+def show_book_info_gatsby():
+    book_info_text=(
+        "Title: The Great Gatsby\n\n"
+        "Author: F. Scott Fitzgerald\n\n"
+        "Genre: Fiction,Classic Literature\n\n"
+        "Rating: 4.7\n\n"
+        "Summary: The Great Gatsby is a classic novel by F. Scott Fitzgerald set\n"
+        "in the Roaring Twenties.It follows the mysterious millionaire Jay Gatsby\n"
+        "and his obsession with the beautiful Daisy Buchanan hrough themes of\n"
+        "love,wealth, and the American Dream, the book explores the decadence\n" 
+        "and disillusionment of the Jazz Age." 
+    ) 
+    
+    show_book_info(book_info_text,300,100)
+    pass
+
+def show_book_info_mockingbird():
+    book_info_text=(
+        "Title: To Kill a Mockingbird\n\n"
+        "Author: Harper Lee\n\n"
+        "Genre: Fiction,Southern Gothic\n\n"
+        "Rating: 4.6\n\n"
+        "Summary: To Kill a Mockingbird is a novel set in the American South \n"
+        "during the 1930s. It explores themes of racial injustice and moral growth\n"
+        "through the eyes of young Scout Finch."
+    ) 
+    
+    show_book_info(book_info_text,300,100)
+    pass
+
+
+
+def show_book_info_pride_and_prejudice():
+    book_info_text=(
+        "Title: Pride and Prejudice\n\n"
+        "Author: Jane Austen\n\n"
+        "Genre: Romance,Classic Literature\n\n"
+        "Rating:4.4\n\n"
+        "Summary:Pride and Prejudice follows the tumultuous relationship between\n"
+        "Elizabeth Bennet and Mr. Darcy amidst the societal norms and prejudices of\n"
+        "early 19th-century England.\n"
+   
+    )
+    
+    show_book_info(book_info_text,300,100)
+    pass
+
+def show_book_info_alchemist():
+    book_info_text=(
+        "Title: The Alchemist\n\n"
+        "Author: Paulo Coelho\n\n"
+        "Genre: Fiction,Allegorical Novel\n\n"
+        "Rating:4\n\n"
+        "Summary:The Alchemist tells the story of Santiago,\n"
+        "a young shepherd boy,on his journey to find his\n"
+        "personal legend and discover the true meaning of life."
+    )
+    
+    show_book_info(book_info_text,300,100)
+    pass
+
+
+
+def show_book_info_earthsea():
+    book_info_text=(
+        "Title: Earthsea\n\n"
+        "Author: Ursula K. Le Guin\n\n"
+        "Genre: Fantasy\n\n"
+        "Rating:4.1\n\n"
+        "Summary:Earthsea is a fantasy series set in the archipelago of Earthsea,\n"
+        "where magic and wizardry are deeply woven into the fabric of society. The\n"
+        "series follows the adventures of various characters as they navigate the\n"
+        "challenges and mysteries of their world.\n"
+    )
+    
+    show_book_info(book_info_text,300,100)
+    pass
+    
+    
+    
+
+
+
+
+    # Reset background color of Book1_label after a short delay
+root.after(10, lambda: Book1_label.config(bg="#ADD8E6")) 
+
+root.after(10, lambda: Book2_label.config(bg="#ADD8E6")) 
+
+root.after(10, lambda: Book3_label.config(bg="#ADD8E6")) 
+root.after(10, lambda: Book4_label.config(bg="#ADD8E6")) 
+root.after(10, lambda: Book5_label.config(bg="#ADD8E6")) 
+
+             
+#     root.after(100, lambda: Book1_label.config(bg="#ADD8E6"))
+# Book1_label.bind("<Button-1>", lambda event: show_book_info())
+
+
+def on_book1_click(event):
+    Book1_label.config(bg="#FFD700")
+    show_book_info_gatsby()
+
+def on_book2_click(event):
+    Book2_label.config(bg="#FFD700")
+    show_book_info_mockingbird()
+
+def on_book3_click(event):
+    Book3_label.config(bg="#FFD700")
+    show_book_info_pride_and_prejudice()
+
+def on_book4_click(event):
+    Book4_label.config(bg="#FFD700")
+    show_book_info_alchemist()
+
+def on_book5_click(event):
+    Book5_label.config(bg="#FFD700")
+    show_book_info_earthsea()
+
+Book1_label.bind("<Button-1>",  on_book1_click)
+Book2_label.bind("<Button-1>", on_book2_click)
+Book3_label.bind("<Button-1>", on_book3_click)
+Book4_label.bind("<Button-1>",  on_book4_click)
+Book5_label.bind("<Button-1>",  on_book5_click)
+
+
+
 
 frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightgreen")
 discover_icon = PhotoImage(file='discover_small.png')

@@ -95,12 +95,6 @@ def show_book_info(book_info_text,x,y):
     borrow_button.place(relx=0.4, rely=0.8, relwidth=0.2, relheight=0.1)
 
     
-
-
-    
-
-
-
     def close_info_box():
         info_box.destroy()
         # Reset background color of all book labels
@@ -285,6 +279,9 @@ search_button=tk.Button(search_frame,text="Search",bg="#FFFFFF",command=search_b
 search_button.place(relx=0.821,rely=0.253,anchor="center")
 
 def populate_books_listbox():
+    search_entry.delete(0, tk.END)
+
+
     for book in books_data:
         books_tree.insert("","end",value=book[:4])
 
@@ -308,9 +305,14 @@ books_tree = ttk.Treeview(books_table_frame, columns=columns, show='headings',he
 for col in columns:
     books_tree.heading(col, text=col)
 
+search_entry.delete(0, tk.END)
 
 populate_books_listbox()
 books_tree.pack(expand=True, fill='both')
+
+refresh_button = tk.Button(search_frame, text="Refresh", command=populate_books_listbox,width=12,height=1,font=("Montserrat SemiBold",9))
+refresh_button.place(relx=0.43,rely=0.94)
+
 
 
 
@@ -318,9 +320,28 @@ frame3 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightc
 favourite_icon =ImageTk.PhotoImage(file='favourite_small.png')
 notebook.add(frame3, text="Favourites", image=favourite_icon, compound=tk.LEFT)
 
-frame4 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightcoral")
+frame4 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
 your_books_icon =ImageTk.PhotoImage(file='your_books_small.png')
 notebook.add(frame4, text="Your Books", image=your_books_icon, compound=tk.LEFT)
+
+your_books_frame=tk.Frame(frame4,width=1000,height=700,bg="#FFFFFF")
+your_books_frame.place(relx=0.425,rely=0.481,anchor="center")
+
+your_Book_Id = Label(your_books_frame, text='Book ID', font=("Montserrat Light", "22"),bg="#FFFFFF")
+your_Book_Id.place(relx=0.12,rely=0.251,anchor="center")
+
+search_entry_for_yourbook=tk.Entry(your_books_frame,width=50,bd=2,highlightbackground="black",font=('Montserrat Light',12))
+search_entry_for_yourbook.place(relx=0.2,rely=0.235)
+
+search_button=tk.Button(your_books_frame,text="Search",bg="#FFFFFF",command=search_books,width=12,height=1,font=("Montserrat SemiBold",9))
+search_button.place(relx=0.821,rely=0.253,anchor="center")
+
+
+
+
+
+                          
+                          
 
 # logo = ImageTk.PhotoImage(file='kitapp_style.png')
 # label = tk.Label(root, image=logo)

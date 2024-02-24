@@ -336,6 +336,13 @@ search_entry_for_yourbook.place(relx=0.2,rely=0.235)
 search_button=tk.Button(your_books_frame,text="Search",bg="#FFFFFF",command=search_books,width=12,height=1,font=("Montserrat SemiBold",9))
 search_button.place(relx=0.821,rely=0.253,anchor="center")
 
+def populate_borrowed_books_tree():
+    for item in borrowed_books_tree.get_children():
+        borrowed_books_tree.delete(item)
+        
+
+
+
 
 
 

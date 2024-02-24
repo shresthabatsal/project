@@ -5,7 +5,7 @@ import tkinter as tk
 import mysql.connector as mysql
 from PIL import Image, ImageTk
 from tkinter import Toplevel, Label, Entry, Button, messagebox
-# database = mysql.connect(host="localhost", user="root", password="123456789", database="library")
+# database = mysql.connect(host="localhost", user="root", password="", database="library")
 # cursor = database.cursor()
 
 def add_book():

@@ -267,6 +267,19 @@ def search_books():
     user_input = search_entry.get()
     print("Searching for:",user_input)
 
+    for item in books_tree.get_children():
+        books_tree.delete(item)
+
+    for book in books_data:
+        if str(book[0])==user_input:
+            books_tree.insert("","end",value=book[:4])
+            return
+        else:
+            MessageBox.showerror("Error","Book not found")
+
+
+
+
     
 search_button=tk.Button(search_frame,text="Search",bg="#FFFFFF",command=search_books,width=12,height=1,font=("Montserrat SemiBold",9))
 search_button.place(relx=0.821,rely=0.253,anchor="center")
@@ -298,6 +311,8 @@ for col in columns:
 
 populate_books_listbox()
 books_tree.pack(expand=True, fill='both')
+
+
 
 frame3 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightcoral")
 favourite_icon =ImageTk.PhotoImage(file='favourite_small.png')

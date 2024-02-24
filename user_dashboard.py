@@ -246,8 +246,13 @@ frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E
 discover_icon =ImageTk.PhotoImage(file='discover_small.png')
 notebook.add(frame2, text="Discover", image=discover_icon, compound=tk.LEFT)
 
-search_frame=tk.Frame(frame2,width=1000,height=700,bg="#FFFFFF")
+
+
+search_frame=tk.Frame(frame2,width=1000,height=700,bg="#FFFFFF") #big white frame inside dicover
 search_frame.place(relx=0.425,rely=0.481,anchor="center")
+
+books_table_frame=tk.Frame(search_frame,width=900,height=600,bg="#ADD8E6")
+books_table_frame.place(relx=0.5,rely=0.6,anchor="center")
 
 Search=Label(search_frame,text="SEARCH BOOKS",font=("Montserrat Black", "25"),bg="#FFFFFF")
 Search.place(relx=0.5,rely=0.08,anchor="center")
@@ -268,18 +273,7 @@ search_button.place(relx=0.821,rely=0.253,anchor="center")
 
 def populate_books_listbox():
     for book in books_data:
-        book_info = f"{book[0]} - {book[1]} - {book[2]} - {book[3]}"
-        books_listbox.insert(tk.END, book_info)
-
-books_data = [
-        {"BookID": 1, "Book title": "Book 1", "Genre": "Fiction", "Author": "Author 1"},
-        {"BookID": 2, "Book title": "Book 2", "Genre": "Non-fiction", "Author": "Author 2"},
-    # Add more book data as needed
-]
-
-# Create a Listbox to display the books
-books_listbox = tk.Listbox(frame2, width=100, height=20)
-books_listbox.pack()
+        books_tree.insert("","end",value=book[:4])
 
 
 connection=mysql.connect(
@@ -292,20 +286,19 @@ cursor=connection.cursor()
 query="SELECT BookID,title,Genre,Author FROM Books"
 cursor.execute(query)
 books_data=cursor.fetchall()
-
-
-for book in books_data:
-    print(book)
-
 cursor.close()
 connection.close()
 
+columns = ('BookID', 'Title', 'Genre', 'Author')
+books_tree = ttk.Treeview(books_table_frame, columns=columns, show='headings',height=20)
+
+for col in columns:
+    books_tree.heading(col, text=col)
+
+
+
 populate_books_listbox()
-
-
-
-    
-    
+books_tree.pack(expand=True, fill='both')
 
 
 

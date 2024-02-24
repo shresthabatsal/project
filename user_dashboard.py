@@ -242,7 +242,7 @@ Book5_label.bind("<Button-1>",  on_book5_click)
 
 
 
-frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightgreen")
+frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
 discover_icon =ImageTk.PhotoImage(file='discover_small.png')
 notebook.add(frame2, text="Discover", image=discover_icon, compound=tk.LEFT)
 
@@ -266,6 +266,48 @@ def search_books():
 search_button=tk.Button(search_frame,text="Search",bg="#FFFFFF",command=search_books,width=12,height=1,font=("Montserrat SemiBold",9))
 search_button.place(relx=0.821,rely=0.253,anchor="center")
 
+def populate_books_listbox():
+    for book in books_data:
+        book_info = f"{book[0]} - {book[1]} - {book[2]} - {book[3]}"
+        books_listbox.insert(tk.END, book_info)
+
+books_data = [
+        {"BookID": 1, "Book title": "Book 1", "Genre": "Fiction", "Author": "Author 1"},
+        {"BookID": 2, "Book title": "Book 2", "Genre": "Non-fiction", "Author": "Author 2"},
+    # Add more book data as needed
+]
+
+# Create a Listbox to display the books
+books_listbox = tk.Listbox(frame2, width=100, height=20)
+books_listbox.pack()
+
+
+connection=mysql.connect(
+        host="localhost",
+        user="root",
+        password="MahotraAdhikari7@",
+        database="project"
+)
+cursor=connection.cursor()
+query="SELECT BookID,title,Genre,Author FROM Books"
+cursor.execute(query)
+books_data=cursor.fetchall()
+
+
+for book in books_data:
+    print(book)
+
+cursor.close()
+connection.close()
+
+populate_books_listbox()
+
+
+
+    
+    
+
+
 
 frame3 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightcoral")
 favourite_icon =ImageTk.PhotoImage(file='favourite_small.png')
@@ -286,3 +328,4 @@ notebook.add(frame4, text="Your Books", image=your_books_icon, compound=tk.LEFT)
 notebook.place(relx=0)
 
 root.mainloop()
+

@@ -296,11 +296,8 @@ for col in columns:
     books_tree.heading(col, text=col)
 
 
-
 populate_books_listbox()
 books_tree.pack(expand=True, fill='both')
-
-
 
 frame3 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightcoral")
 favourite_icon =ImageTk.PhotoImage(file='favourite_small.png')

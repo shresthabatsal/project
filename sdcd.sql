@@ -13,6 +13,29 @@ confirm_password varchar (225) NOT NULL
 show tables;
 select *from users
 
+CREATE TABLE Books (
+    BookID INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    Genre VARCHAR(100),
+    Author VARCHAR(100),
+    Description TEXT
+);
+
+show tables;
+select *from books;
+
+INSERT into Books(title,Genre,Author)
+VALUES("The Great Gatsby","Fiction,Classic Literature","F. Scott Fitzgerald")
+
+
+ALTER TABLE Books
+DROP COLUMN Description;
+        
+        
+        
+
+
+
 
 
 

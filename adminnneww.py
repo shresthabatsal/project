@@ -50,12 +50,6 @@ ad = tk.Frame(frame1, width=1100, height=1000, bg='#5C4033')
 ad.place(relx=0.43, rely=0.25, anchor='center')
 
 
-
-
-
-
-
-
 top_rated = tk.Frame(frame1, width=2500, height=320, bg='#7f5112')
 top_rated.place(relx=0.43, rely=0.71, anchor='center')
 

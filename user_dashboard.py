@@ -21,6 +21,7 @@ style.configure('lefttab.TNotebook', tabposition='wn', background='#EEEBEB')
 style.configure('lefttab.TNotebook.Tab', font=('Montserrat Medium', 15), width=12, background='#6F3434')
 style.map("TNotebook.Tab", background = [("selected", '#F63A3A')])
 
+<<<<<<< Updated upstream
 discover_icon =ImageTk.PhotoImage(file='pics/discover.png')
 # favourite_icon = PhotoImage(file='favourite.png')
 
@@ -38,6 +39,12 @@ notebook = ttk.Notebook(root, style='lefttab.TNotebook')
 
 frame1 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="lightblue")
 home_icon =ImageTk.PhotoImage(file='pics/home.png')
+=======
+notebook = ttk.Notebook(root, style='lefttab.TNotebook')
+
+frame1 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
+home_icon = PhotoImage(file='pics/home.png')
+>>>>>>> Stashed changes
 notebook.add(frame1, text='Home', image=home_icon, compound=tk.LEFT)
 
 ad = tk.Frame(frame1, width=1100, height=320, bg='#FFFFFF')
@@ -49,13 +56,18 @@ top_rated.place(relx=0.43, rely=0.71, anchor='center')
 top_books=Label(top_rated,text="TOP RATED",font=('Montserrat Black', 25),bg="#FFFFFF")
 top_books.place(relx=0.01,rely=0.01)
 
+<<<<<<< Updated upstream
 badge_image=ImageTk.PhotoImage(file="pics/badge.png",)
+=======
+badge_image=PhotoImage(file="pics/badge.png",)
+>>>>>>> Stashed changes
 badge_label=Label(top_rated,image=badge_image,bg="#FFFFFF")
 badge_label.place(relx=0.21,rely=0.03)
 
 display_top_rated_books=tk.Frame(top_rated,width=1020,height=230, bg="#FFFFFF")
 display_top_rated_books.place(relx=0.49,rely=0.55,anchor='center')
 
+<<<<<<< Updated upstream
 Book1_image=ImageTk.PhotoImage(file="pics/The_Great_Gatsby.png")
 Book1_label=Label(display_top_rated_books,image=Book1_image,)
 Book1_label.place(relx=0.03,rely=0.05)
@@ -73,6 +85,25 @@ Book4_label=Label(display_top_rated_books,image=Book4_image)
 Book4_label.place(relx=0.65 ,rely=0.05 )
 
 Book5_image=ImageTk.PhotoImage(file="pics/Earthsea.png")
+=======
+Book1_image=PhotoImage(file="pics/The_Great_Gatsby.png")
+Book1_label=Label(display_top_rated_books,image=Book1_image,)
+Book1_label.place(relx=0.03,rely=0.05)
+
+Book2_image=PhotoImage(file="pics/To_Kill_a_Mockingbird.png")
+Book2_label=Label(display_top_rated_books,image=Book2_image)
+Book2_label.place(relx=0.238 ,rely=0.05 )
+
+Book3_image=PhotoImage(file="pics/Pride and prejudice.png")
+Book3_label=Label(display_top_rated_books,image=Book3_image)
+Book3_label.place(relx=0.46 ,rely=0.05 )
+
+Book4_image=PhotoImage(file="pics/The alchemist.png")
+Book4_label=Label(display_top_rated_books,image=Book4_image)
+Book4_label.place(relx=0.65 ,rely=0.05 )
+
+Book5_image=PhotoImage(file="pics/Earthsea.png")
+>>>>>>> Stashed changes
 Book5_label=Label(display_top_rated_books,image=Book5_image)
 Book5_label.place(relx=0.84 ,rely=0.05 )
 
@@ -235,6 +266,7 @@ Book3_label.bind("<Button-1>", on_book3_click)
 Book4_label.bind("<Button-1>",  on_book4_click)
 Book5_label.bind("<Button-1>",  on_book5_click)
 
+<<<<<<< Updated upstream
 
 
 
@@ -244,6 +276,11 @@ notebook.add(frame2, text="Discover", image=discover_icon, compound=tk.LEFT)
 
 
 
+=======
+frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
+discover_icon = PhotoImage(file='pics/discover.png')
+notebook.add(frame2, text="Discover", image=discover_icon, compound=tk.LEFT)
+>>>>>>> Stashed changes
 search_frame=tk.Frame(frame2,width=1000,height=700,bg="#FFFFFF") #big white frame inside dicover
 search_frame.place(relx=0.425,rely=0.481,anchor="center")
 
@@ -286,6 +323,7 @@ def populate_books_listbox():
 
     for book in books_data:
         books_tree.insert("","end",value=book[:4])
+<<<<<<< Updated upstream
 
 
 connection=mysql.connect(
@@ -415,6 +453,61 @@ label = tk.Label(root, image=logo)
 label.place(relx=0.005, rely=0.85)
 
 advert = ImageTk.PhotoImage(file='pics/advert.png')
+=======
+
+
+connection=mysql.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="project"
+)
+cursor=connection.cursor()
+query="SELECT BookID,title,Genre,Author FROM Books"
+cursor.execute(query)
+books_data=cursor.fetchall()
+cursor.close()
+connection.close()
+
+columns = ('BookID', 'Title', 'Genre', 'Author')
+books_tree = ttk.Treeview(books_table_frame, columns=columns, show='headings',height=20)
+
+for col in columns:
+    books_tree.heading(col, text=col)
+
+search_entry.delete(0, tk.END)
+
+populate_books_listbox()
+books_tree.pack(expand=True, fill='both')
+
+refresh_button = tk.Button(search_frame, text="Refresh", command=populate_books_listbox,width=12,height=1,font=("Montserrat SemiBold",9))
+refresh_button.place(relx=0.43,rely=0.94)
+
+
+frame3 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
+favourite_icon = PhotoImage(file='pics/your_books.png')
+notebook.add(frame3, text="Your books", image=favourite_icon, compound=tk.LEFT)
+box3=tk.Frame(frame3,width=1100,height=674,bg="#FFFFFF")
+box3.place(relx=0.43,rely=0.481,anchor="center")
+
+frame4 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
+hisotry_icon = PhotoImage(file='pics/history.png')
+notebook.add(frame4, text="History", image=hisotry_icon, compound=tk.LEFT)
+box4=tk.Frame(frame4,width=1100,height=674,bg="#FFFFFF")
+box4.place(relx=0.43,rely=0.481,anchor="center")
+
+frame5 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
+your_books_icon = PhotoImage(file='pics/profile.png')
+notebook.add(frame5, text="Profile", image=your_books_icon, compound=tk.LEFT)
+box5=tk.Frame(frame5,width=1100,height=674,bg="#FFFFFF")
+box5.place(relx=0.43,rely=0.481,anchor="center")
+
+logo = tk.PhotoImage(file='pics/kitapp.png')
+label = tk.Label(root, image=logo)
+label.place(relx=0.005, rely=0.85)
+
+advert = tk.PhotoImage(file='pics/advert.png')
+>>>>>>> Stashed changes
 label = tk.Label(frame1, image=advert)
 label.place(relx=0.025, rely=0.041)
 

@@ -5,6 +5,8 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image
 from PIL import ImageTk
+import datetime
+
 
 root = Tk()
 screen_width = root.winfo_screenwidth()
@@ -91,7 +93,7 @@ def show_book_info(book_info_text,x,y):
     info_label=tk.Label(info_box, text=book_info_text,justify=tk.LEFT,font=("Montserrat SemiBold",10),bg="#FFFFFF")
     info_label.place(relx=0.1, rely=0.001, relwidth=0.8, relheight=0.6)
 
-    borrow_button = tk.Button(info_box, text="Borrow",fg='black',bg="#FFFFFF",font=("Monstserrat SemiBold",15),borderwidth=5)
+    borrow_button = tk.Button(info_box, text="Borrow",fg='black',bg="#FFFFFF",font=("Monstserrat SemiBold",15),borderwidth=5,command=borrow_book)
     borrow_button.place(relx=0.4, rely=0.8, relwidth=0.2, relheight=0.1)
 
     
@@ -336,9 +338,67 @@ search_entry_for_yourbook.place(relx=0.2,rely=0.235)
 search_button=tk.Button(your_books_frame,text="Search",bg="#FFFFFF",command=search_books,width=12,height=1,font=("Montserrat SemiBold",9))
 search_button.place(relx=0.821,rely=0.253,anchor="center")
 
-def populate_borrowed_books_tree():
-    for item in borrowed_books_tree.get_children():
-        borrowed_books_tree.delete(item)
+def borrow_book():
+    global borrow_book
+    if info_box:
+        info_box.destroy()
+
+    # #     connection = mysql.connect(
+    # #     host="localhost",
+    # #     user="root",
+    # #     password="MahotraAdhikari7@",
+    # #     database="project"
+    # # )
+    # # cursor = connection.cursor()
+    # # user_id = get_current_user_id()
+    # # query = "SELECT COUNT(*) FROM BorrowedBooks WHERE UserID = %s"
+    # # cursor.execute(query, (user_id,))
+    # # count = cursor.fetchone()[0]
+
+    # if count >= 2:
+    #     MessageBox.showerror("Error", "You can only borrow up to 2 books at a time.")
+    #     return
+
+    borrow_date = datetime.date.today()
+    due_date = borrow_date + datetime.timedelta(days=30)  # Due date is 30 days from borrow date
+
+    # Insert into the BorrowedBooks table
+    # query = "INSERT INTO BorrowedBooks (UserID, BookID, BorrowDate, DueDate) VALUES (%s, %s, %s, %s)"
+    # cursor.execute(query, (user_id, book_id, borrow_date, due_date))
+    # connection.commit()
+    # cursor.close()
+    # connection.close()
+    
+    borrow_book_box=tk.Toplevel()
+    borrow_book_box.title("Borrow book")
+    borrow_book_box.geometry(f"700x500")
+    borrow_book_box.resizable(False,False)
+    borrow_book_box.configure(bg="#FFFFFF")
+
+
+    borrow_book_label=tk.Label(borrow_book_box, text="You are borrowing the book",justify=tk.CENTER,font=("Montserrat SemiBold",20),bg="#FFFFFF")
+    borrow_book_label.place(relx=0.46, rely=0.1,anchor="center")
+
+    # user_label = tk.Label(borrow_book_box, text=f"User ID: {user_id}", justify=tk.CENTER,font=("Montserrat SemiBold", 10), bg="#FFFFFF")
+    # user_label.place(relx=0.1, rely=0.1, relwidth=0.8)
+
+    # book_label = tk.Label(borrow_book_box, text=f"Book ID: {book_id}", justify=tk.CENTER,font=("Montserrat SemiBold", 10), bg="#FFFFFF")
+    # book_label.place(relx=0.1, rely=0.3, relwidth=0.8)
+
+    borrow_date_label = tk.Label(borrow_book_box, text=f"Borrow Date: {borrow_date}", justify=tk.CENTER,font=("Montserrat SemiBold", 10), bg="#FFFFFF")
+    borrow_date_label.place(relx=0.1, rely=0.5, relwidth=0.8)
+
+    due_date_label = tk.Label(borrow_book_box, text=f"Due Date: {due_date}", justify=tk.CENTER,font=("Montserrat SemiBold", 10), bg="#FFFFFF")
+    due_date_label.place(relx=0.1, rely=0.7, relwidth=0.8)
+
+    
+
+
+
+
+# def populate_borrowed_books_tree():
+#     for item in borrowed_books_tree.get_children():
+#         borrowed_books_tree.delete(item)
         
 
 

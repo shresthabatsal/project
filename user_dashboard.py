@@ -421,4 +421,3 @@ def borrow_book():
 notebook.place(relx=0)
 
 root.mainloop()
-

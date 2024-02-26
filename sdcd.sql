@@ -25,11 +25,33 @@ show tables;
 select *from books;
 
 INSERT into Books(title,Genre,Author)
-VALUES("The Great Gatsby","Fiction,Classic Literature","F. Scott Fitzgerald")
+VALUES("To Kill a Mockingbird", "Fiction,Classic Literature", "Harper Lee");
+	
+    
 
 
 ALTER TABLE Books
 DROP COLUMN Description;
+
+CREATE TABLE BorrowedBooks (
+    BorrowID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
+    BookID INT,
+    BookName Varchar(225),
+    BorrowDate DATE,
+    DueDate DATE
+);
+    
+select *from borrowedbooks
+
+Delete FROM Books
+WHERE BookID = '2';
+
+SET SQL_SAFE_UPDATES = 0;
+select *from Books
+
+INSERT Into borrowedbooks(BorrowID,UserID,BookID )
+VALUES("2345","33","4");
         
         
         

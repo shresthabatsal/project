@@ -317,12 +317,12 @@ return_books_frame.place(relx=0.425,rely=0.481,anchor="center")
 
 
 def return_books():
-    user_id = user_id_entry.get().strip()  # Remove any leading/trailing spaces
-    book_id = book_id_entry.get().strip()  # Remove any leading/trailing spaces
+    user_id = user_id_entry.get() #.strip()  # Remove any leading/trailing spaces
+    book_id = book_id_entry.get() #.strip()  # Remove any leading/trailing spaces
     
     if not user_id or not book_id:
         MessageBox.showerror("ERROR", "Please fill all the fields.")
-        return
+        return False
     
     try:
         connection = mysql.connect(
@@ -435,7 +435,7 @@ def insert_to_database():
         # Check if user ID and book ID are provided
         if not user_id or not book_id:
             MessageBox.showerror("Error","Fill all the fields: User ID and Book ID are required.")
-            return
+            return False
         
         # Check if user ID exists
     

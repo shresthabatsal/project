@@ -317,12 +317,12 @@ return_books_frame.place(relx=0.425,rely=0.481,anchor="center")
 
 
 def return_books():
-    user_id = user_id_entry.get() #.strip()  # Remove any leading/trailing spaces
-    book_id = book_id_entry.get() #.strip()  # Remove any leading/trailing spaces
+    user_id = user_id_entry.get().strip()  # Remove any leading/trailing spaces
+    book_id = book_id_entry.get().strip()  # Remove any leading/trailing spaces
     
     if not user_id or not book_id:
         MessageBox.showerror("ERROR", "Please fill all the fields.")
-        return False
+        return
     
     try:
         connection = mysql.connect(
@@ -384,6 +384,64 @@ def borrow_book():
     if 'info_box' in globals() and info_box:
             info_box.destroy()
    
+    def insert_to_database():
+        user_id = user_id_entry.get().strip()  # Remove any leading/trailing spaces
+        book_id = book_id_entry.get().strip()
+        
+        try:# Connect to the database
+            connection = mysql.connect(
+                host="localhost",
+                user="root",
+                password="batsal1019",
+                database="project"
+            )
+            cursor = connection.cursor()
+            
+            # Check if user ID and book ID are provided
+            if not user_id or not book_id:
+                MessageBox.showerror("Error","Fill all the fields: User ID and Book ID are required.")
+                return
+            
+            # Check if user ID exists
+        
+            cursor.execute("SELECT * FROM users WHERE UserID = %s", (user_id,))
+            user = cursor.fetchone()
+        
+            if not user:
+                MessageBox("Error","User ID does not exist")
+                return
+            
+            # Check if book ID exists
+            cursor.execute("SELECT * FROM Books WHERE BookID = %s", (book_id,))
+            book = cursor.fetchone()
+            if not book:
+                MessageBox("Error","Book ID does not exist")
+                return
+        
+        
+            # Get book details
+            book_id = book[0] 
+            user_id= user[0]
+            # user_# Assuming title is the second column (index 1)
+            
+            # Calculate Borrow Date and Due Date
+            borrow_date = datetime.date.today()
+            due_date = borrow_date + datetime.timedelta(days=30)  # Assuming 7 days borrowing period
+            
+            # Insert into BorrowedBooks table
+            insert_query = "INSERT INTO BorrowedBooks (UserID, BookID, BorrowDate, DueDate) VALUES (%s, %s, %s, %s)"
+            insert_values = (user_id, book_id, borrow_date, due_date)
+            cursor.execute(insert_query, insert_values)
+            connection.commit()
+            
+            MessageBox.showinfo("Success","Book borrowed successfully.")
+        except Exception as e:
+            MessageBox.showerror("Error", f"Error: {e}")
+        finally:
+            if connection.is_connected():
+                cursor.close()
+                connection.close()
+ 
     borrow_book_box=tk.Toplevel()
     borrow_book_box.title("Borrow book")
     borrow_book_box.geometry(f"700x500")
@@ -418,64 +476,7 @@ def borrow_book():
     due_date_label.place(relx=0.1, rely=0.7, relwidth=0.8)
 
     # Insert borrowed book details into the database
-
-def insert_to_database():
-    user_id = user_id_entry.get().strip()  # Remove any leading/trailing spaces
-    book_id = book_id_entry.get().strip()
-    
-    try:# Connect to the database
-        connection = mysql.connect(
-            host="localhost",
-            user="root",
-            password="batsal1019",
-            database="project"
-        )
-        cursor = connection.cursor()
-        
-        # Check if user ID and book ID are provided
-        if not user_id or not book_id:
-            MessageBox.showerror("Error","Fill all the fields: User ID and Book ID are required.")
-            return False
-        
-        # Check if user ID exists
-    
-        cursor.execute("SELECT * FROM users WHERE UserID = %s", (user_id,))
-        user = cursor.fetchone()
-    
-        if not user:
-            MessageBox("Error","User ID does not exist")
-            return
-        
-        # Check if book ID exists
-        cursor.execute("SELECT * FROM Books WHERE BookID = %s", (book_id,))
-        book = cursor.fetchone()
-        if not book:
-            MessageBox("Error","Book ID does not exist")
-            return
-    
-    
-        # Get book details
-        book_id = book[0] 
-        user_id= user[0]
-        # user_# Assuming title is the second column (index 1)
-        
-        # Calculate Borrow Date and Due Date
-        borrow_date = datetime.now().date()
-        due_date = borrow_date + datetime(days=30)  # Assuming 7 days borrowing period
-        
-        # Insert into BorrowedBooks table
-        insert_query = "INSERT INTO BorrowedBooks (UserID, BookID BorrowDate, DueDate) VALUES (%s, %s, %s, %s, %s)"
-        insert_values = (user_id, book_id, borrow_date, due_date)
-        cursor.execute(insert_query, insert_values)
-        connection.commit()
-        
-        MessageBox.showinfo("Success","Book borrowed successfully.")
-    except Exception as e:
-        MessageBox.showerror("Error", f"Error: {e}")
-    finally:
-        if connection.is_connected():
-            cursor.close()
-            connection.close()    
+   
        
 
 

@@ -264,7 +264,7 @@ def populate_books_listbox(books_tree):
     connection = mysql.connect(
         host="localhost",
         user="root",
-        password="batsal1019",
+        password="MahotraAdhikari7@",
         database="project"
     )
     cursor = connection.cursor()
@@ -328,7 +328,7 @@ def return_books():
         connection = mysql.connect(
             host="localhost",
             user="root",
-            password="batsal1019",
+            password="MahotraAdhikari7@",
             database="project"
         )
         cursor = connection.cursor()
@@ -392,7 +392,7 @@ def borrow_book():
             connection = mysql.connect(
                 host="localhost",
                 user="root",
-                password="batsal1019",
+                password="MahotraAdhikari7@",
                 database="project"
             )
             cursor = connection.cursor()
@@ -480,48 +480,7 @@ def borrow_book():
        
 
 
-# def insert_to_database():
-#     user_id = user_id_entry.get().strip()  # Remove any leading/trailing spaces
-#     book_id = book_id_entry.get().strip()  # Remove any leading/trailing spaces
-#     borrow_date = datetime.date.today()
-#     due_date = borrow_date + datetime.timedelta(days=30)  # Due date is 30 days from borrow date
-    
-#     if not user_id or not book_id:
-#         MessageBox.showerror("ERROR", "Please fill all the fields.")
-#         return
-    
-#     try:
-#         connection = mysql.connect(
-#             host="localhost",
-#             user="root",
-#             password="MahotraAdhikari7@",
-#             database="project"
-#         )
-#         cursor = connection.cursor()
 
-
-#         query = "SELECT * FROM Users WHERE UserID = %s AND EXISTS (SELECT 1 FROM Books WHERE BookID = %s)"
-#         cursor.execute(query, (user_id, book_id))
-#         user = cursor.fetchone()
-        
-#         if not user:
-#             MessageBox.showerror("Error", "Either User ID does not exist or Book ID does not exist.")
-#             return
-
-        
-#         insert_query = "INSERT INTO borrowedbooks (UserID,BookID, BorrowDate, DueDate) VALUES (%s, %s, %s,%s)"
-#         cursor.execute(insert_query,(user_id, book_id, borrow_date, due_date))
-#         connection.commit()
-
-#         MessageBox.showinfo("Success", "Book borrowed successfully!")
-
-#     except Exception as e:
-#             MessageBox.showerror("Error", f"Error: {e}")
-
-#     finally:
-#         if connection.is_connected():
-#             cursor.close()
-#             connection.close()
 
 borrow_button = tk.Button(search_frame, text="Borrow Book",fg='black',bg="#FFFFFF",font=("Monstserrat SemiBold",15),borderwidth=5,command=borrow_book)
 borrow_button.place(relx=0.05, rely=0.05, relwidth=0.2, relheight=0.1)  

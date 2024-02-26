@@ -264,7 +264,11 @@ def populate_books_listbox(books_tree):
     connection = mysql.connect(
         host="localhost",
         user="root",
+<<<<<<< HEAD
+        password="batsal1019",
+=======
         password="MahotraAdhikari7@",
+>>>>>>> 8e260144f50744c8a99e055b77dacd561c3c0b31
         database="project"
     )
     cursor = connection.cursor()
@@ -427,7 +431,11 @@ def insert_to_database():
         connection = mysql.connect(
             host="localhost",
             user="root",
+<<<<<<< HEAD
+            password="batsal1019",
+=======
             password="MahotraAdhikari7@",
+>>>>>>> 8e260144f50744c8a99e055b77dacd561c3c0b31
             database="project"
         )
         cursor = connection.cursor()

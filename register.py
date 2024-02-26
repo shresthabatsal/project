@@ -139,6 +139,12 @@ def open_login():
 login_button = Button(box, width=26, text='Create my account', font=('Montserrat', 10), command=create_account, fg='#FFFFFF', bg='black')
 login_button.place(relx=0.5, rely=0.83, anchor='center')
 
+sign_up = Label(box, text="Already have an account?", font=('Montserrat', 10, 'italic'), fg='#413F3F', bg='#FFFFFF')
+sign_up.place(relx=0.45, rely=0.88, anchor='center')
+
+register_button = Button(box, text='Login', command=open_login, font=('Montserrat', 10, 'bold'), fg='black', bg='#FFFFFF')
+register_button.place(relx=0.68, rely=0.88, anchor='center')
+
 logo = tk.PhotoImage(file='pics/kitapp.png')
 label = tk.Label(root, image=logo, bg='#ADD8E6')
 label.place(relx=0.005, rely=0.85)

@@ -23,7 +23,7 @@ def login():
         connection = mysql.connect(
             host="localhost",
             user="root",
-            password="",
+            password="batsal1019",
             database="project"
         )
         cursor = connection.cursor()

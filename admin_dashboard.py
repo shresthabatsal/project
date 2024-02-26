@@ -65,7 +65,7 @@ def add_books():
             connection = mysql.connect(
                 host="localhost",
                 user="root",
-                password="batsal1019",
+                password="",
                 database="project"
             )
             cursor = connection.cursor()
@@ -127,7 +127,7 @@ def edit_books():
     db_connection = mysql.connect(
         host="localhost",
         user="root",
-        password="batsal1019",
+        password="",
         database="project"
     )
     cursor = db_connection.cursor()
@@ -197,7 +197,7 @@ def delete_books():
     db_connection = mysql.connect(
         host="localhost",
         user="root",
-        password="batsal1019",
+        password="",
         database="project"
     )
     cursor = db_connection.cursor()

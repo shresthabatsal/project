@@ -301,58 +301,6 @@ refresh_button = tk.Button(search_frame, text="Refresh", command=refresh_books, 
 refresh_button.place(relx=0.43, rely=0.94)
 
 
-# def populate_books_listbox(books_tree):
-#     # Define books_data as global to make it accessible from global scope
-#     global books_data
-
-#     # Clear the search_entry widget
-#     search_entry.delete(0, tk.END)
-
-#     # Connect to the database
-#     connection = mysql.connect(
-#         host="localhost",
-#         user="root",
-#         password="MahotraAdhikari7@",
-#         database="project"
-#     )
-#     cursor = connection.cursor()
-
-#     # Query to fetch book data from the database
-#     query = "SELECT BookID, title, Genre, Author FROM Books"
-#     cursor.execute(query)
-
-#     # Fetch all rows from the query result
-#     books_data = cursor.fetchall()
-
-#     # Close cursor and connection
-#     cursor.close()
-#     connection.close()
-
-#     # Clear the existing items in the books_tree widget
-#     for item in books_tree.get_children():
-#         books_tree.delete(item)
-
-#     # Insert fetched book data into the books_tree widget
-#     for book in books_data:
-#         books_tree.insert("", "end", value=book[:4])
-
-
-# # Create the books_tree widget
-# columns = ('BookID', 'Title', 'Genre', 'Author')
-# books_tree = ttk.Treeview(books_table_frame, columns=columns, show='headings', height=20)
-
-# for col in columns:
-#     books_tree.heading(col, text=col)
-
-# books_tree.pack(expand=True, fill='both')
-
-# # Call the function to populate the books listbox
-# populate_books_listbox(books_tree)
-
-# refresh_button = tk.Button(search_frame, text="Refresh", command=populate_books_listbox,width=12,height=1,font=("Montserrat SemiBold",9))
-# refresh_button.place(relx=0.43,rely=0.94)
-
-
 frame3 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
 return_books_icon =ImageTk.PhotoImage(file='pics/your_books.png')
 notebook.add(frame3, text="Return Books", image=return_books_icon, compound=tk.LEFT)

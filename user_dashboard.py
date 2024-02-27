@@ -215,13 +215,13 @@ books_table_frame.place(relx=0.5,rely=0.6,anchor="center")
 Search=Label(search_frame,text="SEARCH BOOKS",font=("Montserrat Black", "25"),bg="#FFFFFF")
 Search.place(relx=0.5,rely=0.08,anchor="center")
 
-Book_Id = Label(search_frame, text='Book ID', font=("Montserrat Light", "22"),bg="#FFFFFF")
-Book_Id.place(relx=0.12,rely=0.251,anchor="center")
+Book_title = Label(search_frame, text='Book Title', font=("Montserrat Light", "22"),bg="#FFFFFF")
+Book_title.place(relx=0.12,rely=0.251,anchor="center")
 
 search_entry=tk.Entry(search_frame,width=50,bd=2,highlightbackground="black",font=('Montserrat Light',12))
 search_entry.place(relx=0.2,rely=0.235)
 
-
+books_data=[]
 def search_books():
     global books_data
     user_input = search_entry.get()
@@ -232,7 +232,7 @@ def search_books():
         books_tree.delete(item)
 
     for book in books_data:
-        if str(book[0]) == user_input:
+        if str(book[1]) == user_input:
             books_tree.insert("", "end", value=book[:4])
             found = True
             break  # Exit loop once book is found
@@ -243,7 +243,6 @@ def search_books():
 search_button=tk.Button(search_frame,text="Search",bg="#FFFFFF",command=search_books,width=12,height=1,font=("Montserrat SemiBold",9))
 search_button.place(relx=0.821,rely=0.253,anchor="center")
 
-
 def populate_books_listbox(books_tree):
     # Define books_data as global to make it accessible from global scope
     global books_data
@@ -251,25 +250,27 @@ def populate_books_listbox(books_tree):
     # Clear the search_entry widget
     search_entry.delete(0, tk.END)
 
-    # Connect to the database
-    connection = mysql.connect(
-        host="localhost",
-        user="root",
-        password="MahotraAdhikari7@",
-        database="project"
-    )
-    cursor = connection.cursor()
+    # If books_data is already populated, don't fetch again
+    if not books_data:
+        # Connect to the database
+        connection = mysql.connect(
+            host="localhost",
+            user="root",
+            password="MahotraAdhikari7@",
+            database="project"
+        )
+        cursor = connection.cursor()
 
-    # Query to fetch book data from the database
-    query = "SELECT BookID, title, Genre, Author FROM Books"
-    cursor.execute(query)
+        # Query to fetch book data from the database
+        query = "SELECT BookID, title, Genre, Author FROM Books"
+        cursor.execute(query)
 
-    # Fetch all rows from the query result
-    books_data = cursor.fetchall()
+        # Fetch all rows from the query result
+        books_data = cursor.fetchall()
 
-    # Close cursor and connection
-    cursor.close()
-    connection.close()
+        # Close cursor and connection
+        cursor.close()
+        connection.close()
 
     # Clear the existing items in the books_tree widget
     for item in books_tree.get_children():
@@ -292,8 +293,64 @@ books_tree.pack(expand=True, fill='both')
 # Call the function to populate the books listbox
 populate_books_listbox(books_tree)
 
-refresh_button = tk.Button(search_frame, text="Refresh", command=populate_books_listbox,width=12,height=1,font=("Montserrat SemiBold",9))
-refresh_button.place(relx=0.43,rely=0.94)
+def refresh_books():
+    # Call the function to populate the books listbox
+    populate_books_listbox(books_tree)
+
+refresh_button = tk.Button(search_frame, text="Refresh", command=refresh_books, width=12, height=1, font=("Montserrat SemiBold", 9))
+refresh_button.place(relx=0.43, rely=0.94)
+
+
+# def populate_books_listbox(books_tree):
+#     # Define books_data as global to make it accessible from global scope
+#     global books_data
+
+#     # Clear the search_entry widget
+#     search_entry.delete(0, tk.END)
+
+#     # Connect to the database
+#     connection = mysql.connect(
+#         host="localhost",
+#         user="root",
+#         password="MahotraAdhikari7@",
+#         database="project"
+#     )
+#     cursor = connection.cursor()
+
+#     # Query to fetch book data from the database
+#     query = "SELECT BookID, title, Genre, Author FROM Books"
+#     cursor.execute(query)
+
+#     # Fetch all rows from the query result
+#     books_data = cursor.fetchall()
+
+#     # Close cursor and connection
+#     cursor.close()
+#     connection.close()
+
+#     # Clear the existing items in the books_tree widget
+#     for item in books_tree.get_children():
+#         books_tree.delete(item)
+
+#     # Insert fetched book data into the books_tree widget
+#     for book in books_data:
+#         books_tree.insert("", "end", value=book[:4])
+
+
+# # Create the books_tree widget
+# columns = ('BookID', 'Title', 'Genre', 'Author')
+# books_tree = ttk.Treeview(books_table_frame, columns=columns, show='headings', height=20)
+
+# for col in columns:
+#     books_tree.heading(col, text=col)
+
+# books_tree.pack(expand=True, fill='both')
+
+# # Call the function to populate the books listbox
+# populate_books_listbox(books_tree)
+
+# refresh_button = tk.Button(search_frame, text="Refresh", command=populate_books_listbox,width=12,height=1,font=("Montserrat SemiBold",9))
+# refresh_button.place(relx=0.43,rely=0.94)
 
 
 frame3 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")

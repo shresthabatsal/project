@@ -23,12 +23,7 @@ def display(user_id):
 
     notebook = ttk.Notebook(root, style='lefttab.TNotebook')
 
-    # frame1 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
-    # dashboard_icon = PhotoImage(file='pics/dashboard.png')
-    # notebook.add(frame1, text='Dashboard', image=dashboard_icon, compound=tk.LEFT)
-    # box1=tk.Frame(frame1,width=1100,height=674,bg="#FFFFFF")
-    # box1.place(relx=0.43,rely=0.481,anchor="center")
-
+   
     frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
     manage_books_icon = PhotoImage(file='pics/manage_books.png')
     notebook.add(frame2, text="Manage books", image=manage_books_icon, compound=tk.LEFT)
@@ -153,7 +148,6 @@ def display(user_id):
         title_entry = Entry(edit_form, width=26, font=('Montserrat Light', 16), bg='#fdfdfd')
         title_entry.place(relx=0.5, rely=0.32, anchor='center')
 
-<<<<<<< HEAD
         genre = Label(edit_form, text='Genre', font=('Montserrat', 10), fg='#413F3F')
         genre.place(relx=0.125, rely=0.37)
         clicked = tk.StringVar()
@@ -168,27 +162,6 @@ def display(user_id):
 
         button_fetch = tk.Button(edit_form, text="Fetch", font=('Montserrat', 10), command=fetch_data)
         button_fetch.place(relx=0.63, rely=0.2, anchor='center')
-=======
-logo = tk.PhotoImage(file='pics/kitapp.png')
-label = tk.Label(root, image=logo)
-label.place(relx=0.005, rely=0.85)
-
-def open_login_window_after_logout():
-    MessageBox.showinfo("Logged Out", "You are logging out")
-    root.destroy()
-    import login
-    login.open_login_window()
-
-def open_login():
-    open_login_window_after_logout()
-
-Logout_button = tk.Button(root, text='Logout', command=open_login, font=('Montserrat', 10), fg='#FFFFFF', bg='black', borderwidth=5, width=10, height=2)
-Logout_button.place(relx=0.07, rely=0.81, anchor='center')
-
-
-
-notebook.place(relx=0)
->>>>>>> c1e73e78554d3f9b9c99575a2d28e245746d4eac
 
         button_update = tk.Button(edit_form, text="Update", font=('Montserrat', 10),  command=update_data)
         button_update.place(relx=0.5, rely=0.8, anchor='center')
@@ -541,17 +514,17 @@ notebook.place(relx=0)
     delete_user_button = tk.Button(frame3, text="Delete user", command=delete_users, width=15, height=10,font=("Montserrat SemiBold",9))
     delete_user_button.place(relx=0.63, rely=0.35)
 
-    # frame4 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
-    # borrowings_icon = PhotoImage(file='pics/borrowings.png')
-    # notebook.add(frame4, text="Borrowings", image=borrowings_icon, compound=tk.LEFT)
-    # box4=tk.Frame(frame4,width=1100,height=674,bg="#FFFFFF")
-    # box4.place(relx=0.43,rely=0.481,anchor="center")
+    def open_login_window_after_logout():
+        MessageBox.showinfo("Logged Out", "You are logging out")
+        root.destroy()
+        import login
+        login.open_login_window()
 
-    # frame5 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
-    # profile_icon = PhotoImage(file='pics/profile.png')
-    # notebook.add(frame5, text="Profile", image=profile_icon, compound=tk.LEFT)
-    # box5=tk.Frame(frame5,width=1100,height=674,bg="#FFFFFF")
-    # box5.place(relx=0.43,rely=0.481,anchor="center")
+    def open_login():
+        open_login_window_after_logout()
+
+    Logout_button = tk.Button(root, text='Logout', command=open_login, font=('Montserrat', 10), fg='#FFFFFF', bg='black', borderwidth=5, width=10, height=2)
+    Logout_button.place(relx=0.07, rely=0.81, anchor='center')
 
     logo = tk.PhotoImage(file='pics/kitapp.png')
     label = tk.Label(root, image=logo, bg='#eeebeb')

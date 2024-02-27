@@ -7,9 +7,6 @@ from PIL import Image
 from PIL import ImageTk
 import datetime
 
-
-
-
 root = Tk()
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
@@ -93,13 +90,12 @@ def show_book_info(book_info_text,x,y):
     info_box.protocol("WM_DELETE_WINDOW", close_info_box)
 
 
-
 def show_book_info_gatsby():
     
     book_info_text=(
         "Title: The Great Gatsby\n\n"
         "Author: F. Scott Fitzgerald\n\n"
-        "Genre: Fiction,Classic Literature\n\n"
+        "Genre: Fiction\n\n"
         "Rating: 4.7\n\n"
         "Summary: The Great Gatsby is a classic novel by F. Scott Fitzgerald set\n"
         "in the Roaring Twenties.It follows the mysterious millionaire Jay Gatsby\n"
@@ -115,7 +111,7 @@ def show_book_info_mockingbird():
     book_info_text=(
         "Title: To Kill a Mockingbird\n\n"
         "Author: Harper Lee\n\n"
-        "Genre: Fiction,Southern Gothic\n\n"
+        "Genre: Fiction\n\n"
         "Rating: 4.6\n\n"
         "Summary: To Kill a Mockingbird is a novel set in the American South \n"
         "during the 1930s. It explores themes of racial injustice and moral growth\n"
@@ -126,12 +122,11 @@ def show_book_info_mockingbird():
     pass
 
 
-
 def show_book_info_pride_and_prejudice():
     book_info_text=(
         "Title: Pride and Prejudice\n\n"
         "Author: Jane Austen\n\n"
-        "Genre: Romance,Classic Literature\n\n"
+        "Genre: Romance\n\n"
         "Rating:4.4\n\n"
         "Summary:Pride and Prejudice follows the tumultuous relationship between\n"
         "Elizabeth Bennet and Mr. Darcy amidst the societal norms and prejudices of\n"
@@ -146,7 +141,7 @@ def show_book_info_alchemist():
     book_info_text=(
         "Title: The Alchemist\n\n"
         "Author: Paulo Coelho\n\n"
-        "Genre: Fiction,Allegorical Novel\n\n"
+        "Genre: Fiction\n\n"
         "Rating:4\n\n"
         "Summary:The Alchemist tells the story of Santiago,\n"
         "a young shepherd boy,on his journey to find his\n"
@@ -155,7 +150,6 @@ def show_book_info_alchemist():
     
     show_book_info(book_info_text,300,100)
     pass
-
 
 
 def show_book_info_earthsea():
@@ -228,7 +222,6 @@ search_entry=tk.Entry(search_frame,width=50,bd=2,highlightbackground="black",fon
 search_entry.place(relx=0.2,rely=0.235)
 
 
-
 def search_books():
     global books_data
     user_input = search_entry.get()
@@ -247,14 +240,12 @@ def search_books():
     if not found:
         MessageBox.showerror("Error", "Book not found")
 
-
 search_button=tk.Button(search_frame,text="Search",bg="#FFFFFF",command=search_books,width=12,height=1,font=("Montserrat SemiBold",9))
 search_button.place(relx=0.821,rely=0.253,anchor="center")
 
 
-
 def populate_books_listbox(books_tree):
-    # Define books_data as global to ensure it's accessed from the global scope
+    # Define books_data as global to make it accessible from global scope
     global books_data
 
     # Clear the search_entry widget
@@ -301,9 +292,6 @@ books_tree.pack(expand=True, fill='both')
 # Call the function to populate the books listbox
 populate_books_listbox(books_tree)
 
-
-
-
 refresh_button = tk.Button(search_frame, text="Refresh", command=populate_books_listbox,width=12,height=1,font=("Montserrat SemiBold",9))
 refresh_button.place(relx=0.43,rely=0.94)
 
@@ -314,7 +302,6 @@ notebook.add(frame3, text="Return Books", image=return_books_icon, compound=tk.L
 
 return_books_frame=tk.Frame(frame3,width=1000,height=700,bg="#FFFFFF")
 return_books_frame.place(relx=0.425,rely=0.481,anchor="center")
-
 
 def return_books():
     user_id = user_id_entry.get().strip()  # Remove any leading/trailing spaces
@@ -376,8 +363,6 @@ Today_date = datetime.date.today()
 Today_date_label = tk.Label(return_books_frame, text=f"Today's Date: {Today_date}", justify=tk.CENTER,font=("Montserrat SemiBold", 15), bg="#FFFFFF")
 Today_date_label.place(relx=0.08, rely=0.1, relwidth=0.8)
 
-
-
 def borrow_book():
     global info_box
 
@@ -406,16 +391,15 @@ def borrow_book():
         
             cursor.execute("SELECT * FROM users WHERE UserID = %s", (user_id,))
             user = cursor.fetchone()
-        
             if not user:
-                MessageBox("Error","User ID does not exist")
+                MessageBox.showerror("Error","User ID does not exist")
                 return
             
             # Check if book ID exists
             cursor.execute("SELECT * FROM Books WHERE BookID = %s", (book_id,))
             book = cursor.fetchone()
             if not book:
-                MessageBox("Error","Book ID does not exist")
+                MessageBox.showerror("Error","Book ID does not exist")
                 return
         
         
@@ -475,17 +459,10 @@ def borrow_book():
     due_date_label = tk.Label(borrow_book_box, text=f"Due Date: {due_date}", justify=tk.CENTER,font=("Montserrat SemiBold", 10), bg="#FFFFFF")
     due_date_label.place(relx=0.1, rely=0.7, relwidth=0.8)
 
-    # Insert borrowed book details into the database
-   
-       
-
-
-
-
+    
 borrow_button = tk.Button(search_frame, text="Borrow Book",fg='black',bg="#FFFFFF",font=("Monstserrat SemiBold",15),borderwidth=5,command=borrow_book)
 borrow_button.place(relx=0.05, rely=0.05, relwidth=0.2, relheight=0.1)  
     
-
 logo = ImageTk.PhotoImage(file='pics/kitapp.png')
 label = tk.Label(root, image=logo)
 label.place(relx=0.005, rely=0.85)
@@ -494,7 +471,18 @@ advert = ImageTk.PhotoImage(file='pics/advert.png')
 label = tk.Label(frame1, image=advert)
 label.place(relx=0.025, rely=0.041)
 
+def open_login_window_after_logout():
+    MessageBox.showinfo("Logged Out", "You are logging out")
+    root.destroy()
+    import login
+    login.open_login_window()
 
+def open_login():
+    open_login_window_after_logout()
+
+Logout_button = tk.Button(root, text='Logout', command=open_login, font=('Montserrat', 10), fg='#FFFFFF', bg='black', borderwidth=5, width=10, height=2)
+Logout_button.place(relx=0.07, rely=0.81, anchor='center')
+    
 notebook.place(relx=0)
 
 root.mainloop()

@@ -153,6 +153,7 @@ def display(user_id):
         title_entry = Entry(edit_form, width=26, font=('Montserrat Light', 16), bg='#fdfdfd')
         title_entry.place(relx=0.5, rely=0.32, anchor='center')
 
+<<<<<<< HEAD
         genre = Label(edit_form, text='Genre', font=('Montserrat', 10), fg='#413F3F')
         genre.place(relx=0.125, rely=0.37)
         clicked = tk.StringVar()
@@ -167,6 +168,27 @@ def display(user_id):
 
         button_fetch = tk.Button(edit_form, text="Fetch", font=('Montserrat', 10), command=fetch_data)
         button_fetch.place(relx=0.63, rely=0.2, anchor='center')
+=======
+logo = tk.PhotoImage(file='pics/kitapp.png')
+label = tk.Label(root, image=logo)
+label.place(relx=0.005, rely=0.85)
+
+def open_login_window_after_logout():
+    MessageBox.showinfo("Logged Out", "You are logging out")
+    root.destroy()
+    import login
+    login.open_login_window()
+
+def open_login():
+    open_login_window_after_logout()
+
+Logout_button = tk.Button(root, text='Logout', command=open_login, font=('Montserrat', 10), fg='#FFFFFF', bg='black', borderwidth=5, width=10, height=2)
+Logout_button.place(relx=0.07, rely=0.81, anchor='center')
+
+
+
+notebook.place(relx=0)
+>>>>>>> c1e73e78554d3f9b9c99575a2d28e245746d4eac
 
         button_update = tk.Button(edit_form, text="Update", font=('Montserrat', 10),  command=update_data)
         button_update.place(relx=0.5, rely=0.8, anchor='center')

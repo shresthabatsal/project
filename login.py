@@ -3,6 +3,7 @@ import tkinter.messagebox as MessageBox
 import mysql.connector as mysql
 import tkinter as tk
 from tkinter import ttk
+import subprocess
 
 root = Tk()
 screen_width = root.winfo_screenwidth()
@@ -12,7 +13,6 @@ root.title('Library')
 root.configure(bg='#ADD8E6')
 root.state('zoomed')
 root.resizable(False, False)
-
 
 def login():
     email = email_entry.get()
@@ -36,13 +36,14 @@ def login():
             stored_password = user[6]
             if password == stored_password:
                 MessageBox.showinfo("Success", "Login successful!")
+                user_id_no = user[0]
                 root.destroy()
                 if role == 'User':
                     import user_dashboard
-                    user_dashboard.open()
+                    user_dashboard.display(user_id_no)
                 elif role == 'Admin':
                     import admin_dashboard
-                    admin_dashboard.open()
+                    admin_dashboard.display(user_id_no)
             else:
                 MessageBox.showerror("Error", "Incorrect password!")
         else:
@@ -52,7 +53,7 @@ def login():
         MessageBox.showerror("Error", f"Error: {e}")
 
     finally:
-        if connection.is_connected():
+        if 'connection' in locals() and connection.is_connected():
             cursor.close()
             connection.close()
 

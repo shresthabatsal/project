@@ -523,7 +523,6 @@ def display(user_id):
         MessageBox.showinfo("Logged Out", "You are logging out")
         root.destroy()
         import login
-        login.open_login_window()
 
     def open_login():
         open_login_window_after_logout()

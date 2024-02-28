@@ -261,7 +261,7 @@ def display(user_id):
             connection = mysql.connect(
                 host="localhost",
                 user="root",
-                password="MahotraAdhikari7@",
+                password="",
                 database="project"
             )
             cursor = connection.cursor()
@@ -326,7 +326,7 @@ def display(user_id):
             connection = mysql.connect(
                 host="localhost",
                 user="root",
-                password="MahotraAdhikari7@",
+                password="",
                 database="project"
             )
             cursor = connection.cursor()
@@ -390,7 +390,7 @@ def display(user_id):
                 connection = mysql.connect(
                     host="localhost",
                     user="root",
-                    password="MahotraAdhikari7@",
+                    password="",
                     database="project"
                 )
                 cursor = connection.cursor()

@@ -71,6 +71,7 @@ def display(user_id):
         info_box.title("Book Information")
         info_box.geometry(f"700x500+{x}+{y}")
         info_box.resizable(False,False)
+        info_box.transient(root)
         info_box.configure(bg="#FFFFFF")
 
         info_label=tk.Label(info_box, text=book_info_text,justify=tk.LEFT,font=("Montserrat SemiBold",10),bg="#FFFFFF")
@@ -82,14 +83,12 @@ def display(user_id):
        
         def close_info_box():
             info_box.destroy()
-            # Reset background color of all book labels
             Book1_label.config(bg="#ADD8E6")
             Book2_label.config(bg="#ADD8E6")
             Book3_label.config(bg="#ADD8E6")
             Book4_label.config(bg="#ADD8E6")
             Book5_label.config(bg="#ADD8E6")
 
-        # Set the function to be called when the info_box window is closed
         info_box.protocol("WM_DELETE_WINDOW", close_info_box)
 
 
@@ -444,6 +443,7 @@ def display(user_id):
         borrow_book_box.geometry(f"700x500")
         borrow_book_box.resizable(False,False)
         borrow_book_box.configure(bg="#FFFFFF")
+        borrow_book_box.transient(root)
 
         borrow_book_label=tk.Label(borrow_book_box, text="You are borrowing the book",justify=tk.CENTER,font=("Montserrat SemiBold",20),bg="#FFFFFF")
         borrow_book_label.place(relx=0.46, rely=0.1,anchor="center")
@@ -472,12 +472,9 @@ def display(user_id):
         due_date_label = tk.Label(borrow_book_box, text=f"Due Date: {due_date}", justify=tk.CENTER,font=("Montserrat SemiBold", 10), bg="#FFFFFF")
         due_date_label.place(relx=0.1, rely=0.7, relwidth=0.8)
 
-        
-   
     borrow_button = tk.Button(search_frame, text="Borrow Book",fg='black',bg="#FFFFFF",font=("Monstserrat SemiBold",15),borderwidth=5,command=borrow_book)
     borrow_button.place(relx=0.05, rely=0.05, relwidth=0.2, relheight=0.1)  
        
-
     logo = ImageTk.PhotoImage(file='pics/kitapp.png')
     label = tk.Label(root, image=logo)
     label.place(relx=0.005, rely=0.85)
@@ -489,12 +486,10 @@ def display(user_id):
     user_id_label = Label(root, text="User ID: " + str(user_id), font=('Montserrat', 16), bg='#eeebeb')
     user_id_label.place(relx=0.005, rely=0.7)
 
-    
     def open_login_window_after_logout():
         MessageBox.showinfo("Logged Out", "You are logging out")
         root.destroy()
         import login
-        login.open_login_window()
 
     def open_login():
         open_login_window_after_logout()

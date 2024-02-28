@@ -525,6 +525,17 @@ def display(user_id):
 
     user_id_label = Label(root, text="User ID: " + str(user_id), font=('Montserrat', 16), bg='#eeebeb')
     user_id_label.place(relx=0.005, rely=0.7)
+    def open_login_window_after_logout():
+        MessageBox.showinfo("Logged Out", "You are logging out")
+        root.destroy()
+        import login
+        login.open_login_window()
+
+    def open_login():
+        open_login_window_after_logout()
+
+    Logout_button = tk.Button(root, text='Logout', command=open_login, font=('Montserrat', 10), fg='#FFFFFF', bg='black', borderwidth=5, width=10, height=2)
+    Logout_button.place(relx=0.07, rely=0.81, anchor='center')
 
     notebook.place(relx=0)
 

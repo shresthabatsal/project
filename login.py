@@ -3,7 +3,6 @@ import tkinter.messagebox as MessageBox
 import mysql.connector as mysql
 import tkinter as tk
 from tkinter import ttk
-import subprocess
 
 root = Tk()
 screen_width = root.winfo_screenwidth()
@@ -98,12 +97,6 @@ role_menu.place(relx=0.5, rely=0.56, anchor='center')
 def open_register():
     root.destroy()
     import register
-    register.open_register_window()
-
-def open_dashboard():
-    root.destroy()
-    #import dashboard
-    #dashboard.open_register_window()
 
 login_button = Button(box, width=26, text='Login', font=('Montserrat', 10), command=login, fg='#FFFFFF', bg='black')
 login_button.place(relx=0.5, rely=0.7, anchor='center')

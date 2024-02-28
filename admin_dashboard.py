@@ -23,12 +23,6 @@ def display(user_id):
 
     notebook = ttk.Notebook(root, style='lefttab.TNotebook')
 
-    # frame1 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
-    # dashboard_icon = PhotoImage(file='pics/dashboard.png')
-    # notebook.add(frame1, text='Dashboard', image=dashboard_icon, compound=tk.LEFT)
-    # box1=tk.Frame(frame1,width=1100,height=674,bg="#FFFFFF")
-    # box1.place(relx=0.43,rely=0.481,anchor="center")
-
     frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
     manage_books_icon = PhotoImage(file='pics/manage_books.png')
     notebook.add(frame2, text="Manage books", image=manage_books_icon, compound=tk.LEFT)
@@ -67,7 +61,7 @@ def display(user_id):
                 connection = mysql.connect(
                     host="localhost",
                     user="root",
-                    password="MahotraAdhikari7@",
+                    password="",
                     database="project"
                 )
                 cursor = connection.cursor()
@@ -129,7 +123,7 @@ def display(user_id):
         db_connection = mysql.connect(
             host="localhost",
             user="root",
-            password="MahotraAdhikari7@",
+            password="",
             database="project"
         )
         cursor = db_connection.cursor()
@@ -199,7 +193,7 @@ def display(user_id):
         db_connection = mysql.connect(
             host="localhost",
             user="root",
-            password="MahotraAdhikari7@",
+            password="",
             database="project"
         )
         cursor = db_connection.cursor()
@@ -326,7 +320,7 @@ def display(user_id):
                     connection = mysql.connect(
                         host="localhost",
                             user="root",
-                            password="MahotraAdhikari7@",
+                            password="",
                             database ="project"
                             )
                     cursor= connection.cursor()
@@ -400,7 +394,7 @@ def display(user_id):
         db_connection = mysql.connect(
             host="localhost",
             user="root",
-            password="MahotraAdhikari7@",
+            password="",
             database="project"
         )
         cursor = db_connection.cursor()
@@ -493,7 +487,7 @@ def display(user_id):
         db_connection = mysql.connect(
             host="localhost",
             user="root",
-            password="MahotraAdhikari7@",
+            password="",
             database="project"
         )
         cursor = db_connection.cursor()

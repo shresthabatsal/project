@@ -90,13 +90,6 @@ email.place(relx=0.125, rely=0.37)
 email_entry = Entry(box, width=26, font=('Montserrat Light', 16), bg='#fdfdfd')
 email_entry.place(relx=0.5, rely=0.44, anchor='center')
 
-# role = Label(box, text='Role', font=('Montserrat', 10), fg='#413F3F', bg='#FFFFFF')
-# role.place(relx=0.365, rely=0.45)
-# clicked = tk.StringVar()
-
-# role_menu = ttk.Combobox(box, textvariable=clicked, values=['Admin', 'User'], font=('Montserrat Light', 16), width=25, state='readonly')
-# role_menu.place(relx=0.5, rely=0.5, anchor='center')
-
 def password_visibility():
     if password_entry.cget('show') == '':
         password_entry.config(show='*')

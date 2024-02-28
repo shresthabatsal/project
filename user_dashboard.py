@@ -220,8 +220,8 @@ def display(user_id):
     Search=Label(search_frame,text="SEARCH BOOKS",font=("Montserrat Black", "25"),bg="#FFFFFF")
     Search.place(relx=0.5,rely=0.08,anchor="center")
 
-    Book_Id = Label(search_frame, text='Book ID', font=("Montserrat Light", "22"),bg="#FFFFFF")
-    Book_Id.place(relx=0.12,rely=0.251,anchor="center")
+    Book_Title = Label(search_frame, text='Book Title', font=("Montserrat Light", "22"),bg="#FFFFFF")
+    Book_Title.place(relx=0.12,rely=0.251,anchor="center")
 
     search_entry=tk.Entry(search_frame,width=50,bd=2,highlightbackground="black",font=('Montserrat Light',12))
     search_entry.place(relx=0.2,rely=0.235)

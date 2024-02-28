@@ -23,7 +23,12 @@ def display(user_id):
 
     notebook = ttk.Notebook(root, style='lefttab.TNotebook')
 
-   
+    # frame1 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
+    # dashboard_icon = PhotoImage(file='pics/dashboard.png')
+    # notebook.add(frame1, text='Dashboard', image=dashboard_icon, compound=tk.LEFT)
+    # box1=tk.Frame(frame1,width=1100,height=674,bg="#FFFFFF")
+    # box1.place(relx=0.43,rely=0.481,anchor="center")
+
     frame2 = tk.Frame(notebook, width=screen_width, height=screen_height, bg="#ADD8E6")
     manage_books_icon = PhotoImage(file='pics/manage_books.png')
     notebook.add(frame2, text="Manage books", image=manage_books_icon, compound=tk.LEFT)
@@ -62,7 +67,7 @@ def display(user_id):
                 connection = mysql.connect(
                     host="localhost",
                     user="root",
-                    password="",
+                    password="MahotraAdhikari7@",
                     database="project"
                 )
                 cursor = connection.cursor()
@@ -124,7 +129,7 @@ def display(user_id):
         db_connection = mysql.connect(
             host="localhost",
             user="root",
-            password="",
+            password="MahotraAdhikari7@",
             database="project"
         )
         cursor = db_connection.cursor()
@@ -170,7 +175,7 @@ def display(user_id):
         button_clear.place(relx=0.82, rely=0.2, anchor='center')
 
     edit_book_button = tk.Button(frame2, text="Edit Book", command=edit_books, width=15,height=10,font=("Montserrat SemiBold",9))
-    edit_book_button.place(relx=0.38, rely=0.35) 
+    edit_book_button.place(relx=0.38, rely=0.35)
 
     def delete_books():
         def delete_data():
@@ -194,7 +199,7 @@ def display(user_id):
         db_connection = mysql.connect(
             host="localhost",
             user="root",
-            password="",
+            password="MahotraAdhikari7@",
             database="project"
         )
         cursor = db_connection.cursor()
@@ -321,7 +326,7 @@ def display(user_id):
                     connection = mysql.connect(
                         host="localhost",
                             user="root",
-                            password="batsal1019",
+                            password="MahotraAdhikari7@",
                             database ="project"
                             )
                     cursor= connection.cursor()
@@ -395,7 +400,7 @@ def display(user_id):
         db_connection = mysql.connect(
             host="localhost",
             user="root",
-            password="batsal1019",
+            password="MahotraAdhikari7@",
             database="project"
         )
         cursor = db_connection.cursor()
@@ -453,7 +458,7 @@ def display(user_id):
         password.place(relx=0.125, rely=0.61)
         password_entry = Entry(edit_form, width=23, font=('Montserrat Light', 16), bg='#fdfdfd', show='*')
         password_entry.place(relx=0.46, rely=0.68, anchor='center')
-        
+       
         button_fetch = tk.Button(edit_form, text="Fetch", font=('Montserrat', 10), command=fetch_data)
         button_fetch.place(relx=0.63, rely=0.2, anchor='center')
 
@@ -488,7 +493,7 @@ def display(user_id):
         db_connection = mysql.connect(
             host="localhost",
             user="root",
-            password="batsal1019",
+            password="MahotraAdhikari7@",
             database="project"
         )
         cursor = db_connection.cursor()
@@ -513,18 +518,6 @@ def display(user_id):
 
     delete_user_button = tk.Button(frame3, text="Delete user", command=delete_users, width=15, height=10,font=("Montserrat SemiBold",9))
     delete_user_button.place(relx=0.63, rely=0.35)
-
-    def open_login_window_after_logout():
-        MessageBox.showinfo("Logged Out", "You are logging out")
-        root.destroy()
-        import login
-        login.open_login_window()
-
-    def open_login():
-        open_login_window_after_logout()
-
-    Logout_button = tk.Button(root, text='Logout', command=open_login, font=('Montserrat', 10), fg='#FFFFFF', bg='black', borderwidth=5, width=10, height=2)
-    Logout_button.place(relx=0.07, rely=0.81, anchor='center')
 
     logo = tk.PhotoImage(file='pics/kitapp.png')
     label = tk.Label(root, image=logo, bg='#eeebeb')

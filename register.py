@@ -42,10 +42,10 @@ def create_account():
         try:
             connection = mysql.connect(
                 host="localhost",
-                    user="root",
-                    password="",
-                    database ="project"
-                    )
+                user="root",
+                password="",
+                database ="project"
+                )
             cursor= connection.cursor()
 
             query = "INSERT INTO users(`first_name`, `second_name`, `email`, `role`, `password`, `confirm_password`) VALUES (%s,%s,%s,%s,%s,%s)"
@@ -56,7 +56,6 @@ def create_account():
             MessageBox.showinfo("Done", "Account created successfully.")
             root.destroy()
             import login
-            login.open_register_window()
         except Exception as e:
             MessageBox.showerror("Error",f"Error:{e}")
 
@@ -127,7 +126,6 @@ confirm_show_hide.place(relx=0.83, rely=0.68, anchor='center')
 def open_login():
     root.destroy()
     import login
-    login.open_register_window()
 
 login_button = Button(box, width=26, text='Create my account', font=('Montserrat', 10), command=create_account, fg='#FFFFFF', bg='black')
 login_button.place(relx=0.5, rely=0.83, anchor='center')

@@ -34,15 +34,20 @@ def login():
         if user:
             stored_password = user[6]
             if password == stored_password:
-                MessageBox.showinfo("Success", "Login successful!")
                 user_id_no = user[0]
-                root.destroy()
-                if role == 'User':
+                user_role = user[4]
+                if user_role == 'User' and role == 'User':
+                    MessageBox.showinfo("Success", "Login successful!")
+                    root.destroy()
                     import user_dashboard
                     user_dashboard.display(user_id_no)
-                elif role == 'Admin':
+                elif user_role == 'Admin' and role == 'Admin':
+                    MessageBox.showinfo("Success", "Login successful!")
+                    root.destroy()
                     import admin_dashboard
                     admin_dashboard.display(user_id_no)
+                else:
+                    MessageBox.showerror("Error", "Incorrect role selected!")
             else:
                 MessageBox.showerror("Error", "Incorrect password!")
         else:
